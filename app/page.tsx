@@ -77,7 +77,12 @@ export default function Home() {
       </header>
 
       <section className="hero" id="info">
-        <h1 className="hero__headline">{heroCopy}</h1>
+        <div className="hero__content">
+          <h1 className="hero__headline">{heroCopy}</h1>
+          <p className="hero__subtext">
+            Specialized in creating digital experiences that balance aesthetic precision with functional design. Working with early-stage companies to define their visual identity and product strategy.
+          </p>
+        </div>
         <a href="#work" className="hero__cta">
           SEE WORK ↓
         </a>

@@ -97,6 +97,12 @@ a {
   padding: clamp(3rem, 8vh, 5rem) clamp(0.9rem, 3vw, 1.4rem) clamp(2rem, 5vh, 3rem);
 }
 
+.hero__content {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
 .hero__headline {
   margin: 0;
   font-size: clamp(3rem, 7.4vw, 5.1rem);
@@ -106,6 +112,19 @@ a {
   width: 100%;
   max-width: clamp(34ch, 72vw, 52ch);
   animation: heroFade 0.9s ease-out both;
+}
+
+.hero__subtext {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: var(--muted);
+  max-width: 260px;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  position: absolute;
+  bottom: clamp(5rem, 10vh, 7rem);
+  right: clamp(3rem, 6vw, 4rem);
 }
 
 .hero__cta {
