@@ -3,16 +3,19 @@
 import { useEffect, useState } from 'react'
 
 const navLinks = [
-  { label: 'INFO', href: '#info' },
-  { label: 'INDEX', href: '#work' },
-  { label: 'EMAIL', href: 'mailto:hi@ch.sh' },
-  { label: 'INSTAGRAM', href: 'https://instagram.com' },
+  { label: 'ABOUT', href: '#about' },
+  { label: 'PROJECTS', href: '#projects' },
+  { label: 'TECH', href: '#tech' },
+  { label: 'CONTACT', href: '#contact' },
 ]
 
 const heroCopy = {
-  text: 'Damian es director de arte y disenador digital desde ',
-  highlight: 'Barcelona',
-  rest: '. Ahora colabora con equipos SaaS.'
+  prefix: 'Engineering',
+  text: ' student from ',
+  highlight: 'Palma',
+  rest: ' building production-ready applications. ',
+  highlight2: 'Full-stack development',
+  rest2: ' with attention to detail.'
 }
 
 const tiles = [
@@ -76,7 +79,7 @@ export default function Home() {
   return (
     <main className="frame">
       <header className="frame__top">
-        <span className="frame__brand">DAMIAN</span>
+        <span className="frame__brand">DAMIAN ACRI</span>
         <nav className="frame__nav" aria-label="principal">
           {navLinks.map(({ label, href }) => (
             <a key={href} href={href} className="frame__nav-link">
@@ -94,9 +97,10 @@ export default function Home() {
         </div>
       </header>
 
-      <section className="hero" id="info">
+      <section className="hero" id="home">
         <div className="hero__content">
           <h1 className="hero__headline">
+            <span className="hero__glow">{heroCopy.prefix}</span>
             {heroCopy.text}
             <span
               className="hero__highlight"
@@ -107,13 +111,15 @@ export default function Home() {
               {heroCopy.highlight}
             </span>
             {heroCopy.rest}
+            <span className="hero__dotted">{heroCopy.highlight2}</span>
+            {heroCopy.rest2}
           </h1>
           <p className="hero__subtext">
-            Specialized in creating digital experiences that balance aesthetic precision with functional design. Working with early-stage companies to define their visual identity and product strategy.
+            Computer Engineering student at UIB specializing in full-stack development and data engineering. I build complete products from scratch handling infrastructure, APIs, data pipelines, and user interfaces. Currently seeking summer 2026 internship opportunities.
           </p>
         </div>
-        <a href="#work" className="hero__cta">
-          SEE WORK ↓
+        <a href="#projects" className="hero__cta">
+          SEE PROJECTS ↓
         </a>
         {showTooltip && (
           <div
@@ -126,7 +132,7 @@ export default function Home() {
         )}
       </section>
 
-      <section className="grid" id="work">
+      <section className="grid" id="projects">
         {tiles.map(({ id, title, subtitle, tag }, index) => (
           <article key={id} className={`grid__item grid__item--${index + 1}`}>
             <div className="grid__item-media" aria-hidden="true" />

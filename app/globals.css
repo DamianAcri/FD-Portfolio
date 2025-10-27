@@ -85,11 +85,27 @@ a {
 .frame__nav-link {
   color: var(--muted);
   transition: color 0.3s ease;
+  position: relative;
+}
+
+.frame__nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 0;
+  height: 0.5px;
+  background: var(--fg);
+  transition: width 0.3s ease;
 }
 
 .frame__nav-link:hover,
 .frame__nav-link:focus-visible {
   color: var(--fg);
+}
+
+.frame__nav-link:hover::after {
+  width: 100%;
 }
 
 .frame__meta {
@@ -138,9 +154,26 @@ a {
   animation: heroFade 0.9s ease-out both;
 }
 
+.hero__glow {
+  text-shadow: 0 0 40px rgba(234, 232, 229, 0.5);
+}
+
 .hero__highlight {
   cursor: pointer;
   position: relative;
+  text-decoration: underline;
+  text-decoration-color: rgba(234, 232, 229, 0.3);
+  text-underline-offset: 6px;
+  text-decoration-thickness: 1px;
+  transition: text-decoration-color 0.3s ease;
+}
+
+.hero__highlight:hover {
+  text-decoration-color: rgba(234, 232, 229, 0.6);
+}
+
+.hero__dotted {
+  font-style: italic;
 }
 
 .cursor-tooltip {
