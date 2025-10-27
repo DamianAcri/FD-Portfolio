@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useEffect, useState } from 'react'
 
@@ -10,7 +10,7 @@ const navLinks = [
 ]
 
 const heroCopy =
-  'Albert Chang is a designer + art director from CA. Currently he is based in NYC and design manager at Squarespace.'
+  'Damian es director de arte y disenador digital desde Barcelona. Ahora colabora con equipos SaaS.'
 
 const tiles = [
   {
@@ -61,7 +61,7 @@ export default function Home() {
   return (
     <main className="frame">
       <header className="frame__top">
-        <div className="frame__brand">DAMIAN</div>
+        <span className="frame__brand">DAMIAN</span>
         <nav className="frame__nav" aria-label="principal">
           {navLinks.map(({ label, href }) => (
             <a key={href} href={href} className="frame__nav-link">
