@@ -138,6 +138,41 @@ a {
   animation: heroFade 0.9s ease-out both;
 }
 
+.hero__highlight {
+  cursor: pointer;
+  position: relative;
+}
+
+.cursor-tooltip {
+  position: fixed;
+  width: 180px;
+  height: 120px;
+  background: #000;
+  border-radius: 8px;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(1);
+  z-index: 9999;
+  opacity: 1;
+  animation: tooltipFadeIn 0.2s ease-out;
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+}
+
+.cursor-tooltip.leaving {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.8);
+}
+
+@keyframes tooltipFadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
 .hero__subtext {
   margin: 0;
   font-size: 0.85rem;

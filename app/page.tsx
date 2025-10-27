@@ -9,8 +9,11 @@ const navLinks = [
   { label: 'INSTAGRAM', href: 'https://instagram.com' },
 ]
 
-const heroCopy =
-  'Damian es director de arte y disenador digital desde Barcelona. Ahora colabora con equipos SaaS.'
+const heroCopy = {
+  text: 'Damian es director de arte y disenador digital desde ',
+  highlight: 'Barcelona',
+  rest: '. Ahora colabora con equipos SaaS.'
+}
 
 const tiles = [
   {
@@ -48,12 +51,27 @@ function makeClock(): ClockState {
 
 export default function Home() {
   const [clock, setClock] = useState<ClockState | null>(null)
+  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 })
+  const [showTooltip, setShowTooltip] = useState(false)
+  const [isLeaving, setIsLeaving] = useState(false)
 
   useEffect(() => {
     setClock(makeClock())
     const id = window.setInterval(() => setClock(makeClock()), 1000)
     return () => window.clearInterval(id)
   }, [])
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    setCursorPos({ x: e.clientX, y: e.clientY })
+  }
+
+  const handleMouseLeave = () => {
+    setIsLeaving(true)
+    setTimeout(() => {
+      setShowTooltip(false)
+      setIsLeaving(false)
+    }, 200)
+  }
 
   return (
     <main className="frame">
@@ -78,7 +96,18 @@ export default function Home() {
 
       <section className="hero" id="info">
         <div className="hero__content">
-          <h1 className="hero__headline">{heroCopy}</h1>
+          <h1 className="hero__headline">
+            {heroCopy.text}
+            <span
+              className="hero__highlight"
+              onMouseEnter={() => setShowTooltip(true)}
+              onMouseLeave={handleMouseLeave}
+              onMouseMove={handleMouseMove}
+            >
+              {heroCopy.highlight}
+            </span>
+            {heroCopy.rest}
+          </h1>
           <p className="hero__subtext">
             Specialized in creating digital experiences that balance aesthetic precision with functional design. Working with early-stage companies to define their visual identity and product strategy.
           </p>
@@ -86,6 +115,15 @@ export default function Home() {
         <a href="#work" className="hero__cta">
           SEE WORK ↓
         </a>
+        {showTooltip && (
+          <div
+            className={`cursor-tooltip ${isLeaving ? 'leaving' : ''}`}
+            style={{
+              left: `${cursorPos.x}px`,
+              top: `${cursorPos.y}px`,
+            }}
+          />
+        )}
       </section>
 
       <section className="grid" id="work">
