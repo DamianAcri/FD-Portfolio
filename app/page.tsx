@@ -1,6 +1,6 @@
 ﻿'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 
 const navLinks = [
   { label: 'ABOUT', href: '#about' },
@@ -17,21 +17,6 @@ const heroCopy = {
   highlight2: 'Full-stack development',
   rest2: ' with attention to detail.'
 }
-
-const tiles = [
-  {
-    id: 'tile-1',
-    title: 'For the Struggle',
-    subtitle: 'Visualizing a Bold, New Direction for a Nonprofit Combatting Social Injustice in Charlotte',
-    tag: 'IDENTITY',
-  },
-  {
-    id: 'tile-2',
-    title: 'Amplify',
-    subtitle: 'Harnessing Social Media Behaviors to Redefine the Landscape of Digital Activism',
-    tag: 'UI/UX',
-  },
-]
 
 type ClockState = {
   label: string
@@ -57,11 +42,29 @@ export default function Home() {
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 })
   const [showTooltip, setShowTooltip] = useState(false)
   const [isLeaving, setIsLeaving] = useState(false)
+  const [showCta, setShowCta] = useState(true)
+  const heroRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
     setClock(makeClock())
     const id = window.setInterval(() => setClock(makeClock()), 1000)
     return () => window.clearInterval(id)
+  }, [])
+
+  useEffect(() => {
+    if (!heroRef.current) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        // Show CTA only if hero is more than 85% visible
+        setShowCta(entry.intersectionRatio > 0.85)
+      },
+      { threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.85, 0.9, 1] }
+    )
+
+    observer.observe(heroRef.current)
+
+    return () => observer.disconnect()
   }, [])
 
   const handleMouseMove = (e: React.MouseEvent) => {
@@ -97,7 +100,7 @@ export default function Home() {
         </div>
       </header>
 
-      <section className="hero" id="home">
+      <section className="hero" id="home" ref={heroRef}>
         <div className="hero__content">
           <h1 className="hero__headline">
             <span className="hero__glow">{heroCopy.prefix}</span>
@@ -118,7 +121,10 @@ export default function Home() {
             Computer Engineering student at UIB specializing in full-stack development and data engineering. I build complete products from scratch handling infrastructure, APIs, data pipelines, and user interfaces. Currently seeking summer 2026 internship opportunities.
           </p>
         </div>
-        <a href="#projects" className="hero__cta">
+        <a
+          href="#projects"
+          className={`hero__cta ${!showCta ? 'hero__cta--hidden' : ''}`}
+        >
           SEE PROJECTS ↓
         </a>
         {showTooltip && (
@@ -130,19 +136,6 @@ export default function Home() {
             }}
           />
         )}
-      </section>
-
-      <section className="grid" id="projects">
-        {tiles.map(({ id, title, subtitle, tag }, index) => (
-          <article key={id} className={`grid__item grid__item--${index + 1}`}>
-            <div className="grid__item-media" aria-hidden="true" />
-            <footer className="grid__item-footer">
-              <span className="grid__item-tag">{tag}</span>
-              <h2 className="grid__item-title">{title}</h2>
-              <p className="grid__item-subtitle">{subtitle}</p>
-            </footer>
-          </article>
-        ))}
       </section>
     </main>
   )

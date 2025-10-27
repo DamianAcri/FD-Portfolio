@@ -13,6 +13,14 @@ body {
   overflow-x: hidden;
 }
 
+html {
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 body {
   background: var(--bg);
   color: var(--fg);
@@ -55,6 +63,8 @@ a {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 .frame__top {
@@ -63,6 +73,7 @@ a {
   justify-content: space-between;
   gap: clamp(1.5rem, 6vw, 4rem);
   padding: clamp(0.5rem, 2vh, 0.8rem) clamp(1rem, 3vw, 1.6rem);
+  padding-top: clamp(0.9rem, 2.5vh, 1.3rem);
   text-transform: uppercase;
   letter-spacing: 0.2em;
   font-size: 0.7rem;
@@ -113,7 +124,7 @@ a {
   flex-direction: column;
   align-items: flex-end;
   gap: 0.2rem;
-  padding-right: clamp(1.5rem, 3vw, 2.5rem);
+  padding-right: 0;
   color: var(--muted);
 }
 
@@ -130,11 +141,12 @@ a {
 
 .hero {
   position: relative;
-  min-height: calc(100vh - 9rem);
+  min-height: calc(100vh - 4rem);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: clamp(3rem, 8vh, 5rem) clamp(0.9rem, 3vw, 1.4rem) clamp(2rem, 5vh, 3rem);
+  box-sizing: border-box;
 }
 
 .hero__content {
@@ -226,12 +238,53 @@ a {
   letter-spacing: 0.2em;
   font-size: 0.7rem;
   color: var(--muted);
-  transition: color 0.3s ease;
+  transition: opacity 0.3s ease, transform 0.3s ease, color 0.3s ease;
   white-space: nowrap;
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .hero__cta:hover {
   color: var(--fg);
+}
+
+.hero__cta--hidden {
+  opacity: 0 !important;
+  transform: translateY(10px) !important;
+  pointer-events: none !important;
+}
+
+.about {
+  padding: clamp(4rem, 10vh, 6rem) clamp(0.9rem, 3vw, 1.4rem);
+}
+
+.about__content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.about__title {
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  font-weight: 500;
+  margin: 0 0 clamp(2rem, 4vh, 3rem) 0;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+
+.about__text {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.2rem, 3vh, 1.8rem);
+}
+
+.about__text p {
+  margin: 0;
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  line-height: 1.6;
+  color: var(--fg);
+  max-width: 70ch;
 }
 
 .grid {
