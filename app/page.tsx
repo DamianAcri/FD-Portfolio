@@ -15,18 +15,15 @@ const heroCopy =
 const tiles = [
   {
     id: 'tile-1',
-    title: 'SQSP COLLECTION / JEFF KOONS',
-    subtitle: 'Brand, Film, Website, OOH',
+    title: 'For the Struggle',
+    subtitle: 'Visualizing a Bold, New Direction for a Nonprofit Combatting Social Injustice in Charlotte',
+    tag: 'IDENTITY',
   },
   {
     id: 'tile-2',
-    title: 'DESIGN INTELLIGENCE',
-    subtitle: 'Brand, Art Direction, Website',
-  },
-  {
-    id: 'tile-3',
-    title: 'IDEAS ARE WEIRD',
-    subtitle: 'Film, Art Direction, AI',
+    title: 'Amplify',
+    subtitle: 'Harnessing Social Media Behaviors to Redefine the Landscape of Digital Activism',
+    tag: 'UI/UX',
   },
 ]
 
@@ -81,16 +78,20 @@ export default function Home() {
 
       <section className="hero" id="info">
         <h1 className="hero__headline">{heroCopy}</h1>
+        <a href="#work" className="hero__cta">
+          SEE WORK ↓
+        </a>
       </section>
 
       <section className="grid" id="work">
-        {tiles.map(({ id, title, subtitle }, index) => (
+        {tiles.map(({ id, title, subtitle, tag }, index) => (
           <article key={id} className={`grid__item grid__item--${index + 1}`}>
-            <header className="grid__item-header">
-              <span className="grid__item-title">{title}</span>
-              <span className="grid__item-subtitle">{subtitle}</span>
-            </header>
             <div className="grid__item-media" aria-hidden="true" />
+            <footer className="grid__item-footer">
+              <span className="grid__item-tag">{tag}</span>
+              <h2 className="grid__item-title">{title}</h2>
+              <p className="grid__item-subtitle">{subtitle}</p>
+            </footer>
           </article>
         ))}
       </section>
