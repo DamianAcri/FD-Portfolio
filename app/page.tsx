@@ -18,6 +18,42 @@ const heroCopy = {
   rest2: ' with attention to detail.'
 }
 
+const projects = [
+  {
+    id: 'project-1',
+    title: 'Distributed Task Queue System',
+    summary:
+      'High-throughput workers orchestrating over 10k jobs per minute with proactive retry logic, observability, and autoscaling.',
+    client: 'Internal Platform',
+    scope: 'Backend Infrastructure',
+    stack: 'Go / Redis / Docker',
+    year: '2025',
+    mediaClass: 'project-card__media--queue',
+  },
+  {
+    id: 'project-2',
+    title: 'Real-time Analytics Pipeline',
+    summary:
+      'Event-driven ingestion processing 2M+ signals daily with streaming transformations and sub-second drilldowns for analysts.',
+    client: 'Insights Squad',
+    scope: 'Data Engineering',
+    stack: 'Python / Kafka / PostgreSQL',
+    year: '2024',
+    mediaClass: 'project-card__media--analytics',
+  },
+  {
+    id: 'project-3',
+    title: 'API Gateway with Rate Limiting',
+    summary:
+      'Unified entrypoint with adaptive rate limiting, auth, and service discovery powering customer-facing APIs with 99.99% uptime.',
+    client: 'Product APIs',
+    scope: 'Platform Services',
+    stack: 'Node.js / Express / MongoDB',
+    year: '2024',
+    mediaClass: 'project-card__media--gateway',
+  },
+]
+
 type ClockState = {
   label: string
   iso: string
@@ -136,6 +172,39 @@ export default function Home() {
             }}
           />
         )}
+      </section>
+
+      <section className="projects" id="projects">
+        <div className="projects__header">
+          <span className="projects__eyebrow">Selected Work</span>
+          <h2 className="projects__title">Projects</h2>
+          <p className="projects__subtitle">
+            Systems and products crafted with the same care and precision you see in the hero: robust, intentional, and production ready.
+          </p>
+        </div>
+        <div className="projects__grid">
+          {projects.map((project) => (
+            <article key={project.id} className="project-card">
+              <div className="project-card__media-wrapper">
+                <div
+                  className={`project-card__media ${project.mediaClass}`}
+                  aria-hidden="true"
+                />
+                <span className="project-card__badge">{project.year}</span>
+              </div>
+              <div className="project-card__body">
+                <h3 className="project-card__title">{project.title}</h3>
+                <p className="project-card__summary">{project.summary}</p>
+                <div className="project-card__footer">
+                  <span>{project.client}</span>
+                  <span className="project-card__divider" aria-hidden="true" />
+                  <span>{project.scope}</span>
+                </div>
+                <span className="project-card__stack">{project.stack}</span>
+              </div>
+            </article>
+          ))}
+        </div>
       </section>
     </main>
   )
