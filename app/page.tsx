@@ -5,7 +5,6 @@ import { useEffect, useState, useRef } from 'react'
 const navLinks = [
   { label: 'ABOUT', href: '#about' },
   { label: 'PROJECTS', href: '#projects' },
-  { label: 'TECH', href: '#tech' },
   { label: 'CONTACT', href: '#contact' },
 ]
 
@@ -51,6 +50,27 @@ const projects = [
     stack: 'Node.js / Express / MongoDB',
     year: '2024',
     mediaClass: 'project-card__media--gateway',
+  },
+]
+
+const experience = [
+  {
+    id: 'exp-1',
+    company: 'Lambda Systems',
+    role: 'Platform Engineer',
+    period: '2024 — Now',
+  },
+  {
+    id: 'exp-2',
+    company: 'Orbit Analytics',
+    role: 'Full-stack Developer',
+    period: '2022 — 2024',
+  },
+  {
+    id: 'exp-3',
+    company: 'Freelance',
+    role: 'Product Engineer',
+    period: '2020 — 2022',
   },
 ]
 
@@ -202,6 +222,27 @@ export default function Home() {
                 </div>
                 <span className="project-card__stack">{project.stack}</span>
               </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="experience" id="experience">
+        <div className="experience__header">
+          <span className="experience__eyebrow">Experience</span>
+          <h2 className="experience__title">Shipping impact with lean teams.</h2>
+          <p className="experience__subtitle">
+            From platform engineering squads to autonomous product pods, I plug into teams that value rigor, speed, and thoughtful systems design.
+          </p>
+        </div>
+        <div className="experience__list" role="list">
+          {experience.map((item) => (
+            <article key={item.id} className="experience__item" role="listitem">
+              <div className="experience__company">
+                <span className="experience__company-name">{item.company}</span>
+                <span className="experience__role">{item.role}</span>
+              </div>
+              <span className="experience__period">{item.period}</span>
             </article>
           ))}
         </div>

@@ -494,6 +494,113 @@ a {
   }
 }
 
+.experience {
+  padding: clamp(4rem, 10vh, 6.5rem) clamp(1rem, 4vw, 2.4rem);
+  display: grid;
+  grid-template-columns: minmax(0, 0.42fr) minmax(0, 0.58fr);
+  gap: clamp(2.4rem, 6vw, 4.5rem);
+  position: relative;
+  margin-top: clamp(3rem, 8vh, 5rem);
+}
+
+.experience__header {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  max-width: 460px;
+}
+
+.experience__eyebrow {
+  font-size: 0.65rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.experience__title {
+  margin: 0;
+  font-size: clamp(1.9rem, 3.6vw, 2.6rem);
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  color: var(--fg);
+}
+
+.experience__subtitle {
+  margin: 0;
+  font-size: clamp(0.96rem, 1.6vw, 1.08rem);
+  line-height: 1.7;
+  color: rgba(234, 232, 229, 0.7);
+}
+
+.experience__list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.experience__item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1.5rem;
+  padding-bottom: 1.4rem;
+  border-bottom: 1px solid rgba(234, 232, 229, 0.08);
+}
+
+.experience__item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.experience__company {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.experience__company-name {
+  font-size: 0.78rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(234, 232, 229, 0.68);
+}
+
+.experience__role {
+  font-size: clamp(1rem, 1.8vw, 1.2rem);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--fg);
+}
+
+.experience__period {
+  align-self: flex-start;
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(234, 232, 229, 0.52);
+}
+
+@media (max-width: 960px) {
+  .experience {
+    grid-template-columns: 1fr;
+    gap: 2.6rem;
+  }
+
+  .experience__header {
+    max-width: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .experience__item {
+    grid-template-columns: 1fr;
+    gap: 0.9rem;
+  }
+
+  .experience__period {
+    justify-self: flex-start;
+  }
+}
+
 .about {
   padding: clamp(4rem, 10vh, 6rem) clamp(0.9rem, 3vw, 1.4rem);
 }
