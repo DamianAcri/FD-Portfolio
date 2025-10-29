@@ -5,6 +5,7 @@ import { useEffect, useState, useRef } from 'react'
 const navLinks = [
   { label: 'ABOUT', href: '#about' },
   { label: 'PROJECTS', href: '#projects' },
+  { label: 'TECH', href: '#tech' },
   { label: 'CONTACT', href: '#contact' },
 ]
 
@@ -53,26 +54,101 @@ const projects = [
   },
 ]
 
+const techStack = [
+  {
+    id: 'backend',
+    title: 'Backend Systems',
+    summary:
+      'Concurrency, data modeling, and orchestration to keep products fast and resilient.',
+    focus: 'APIs · Distributed Systems',
+    tokens: ['Go', 'Node.js', 'PostgreSQL', 'MongoDB', 'Redis', 'gRPC', 'GraphQL', 'Kafka'],
+  },
+  {
+    id: 'frontend',
+    title: 'Product Interfaces',
+    summary:
+      'Design systems, animation, and accessible interfaces that translate technical rigor into clarity.',
+    focus: 'UI Engineering · Motion',
+    tokens: ['React', 'Next.js', 'TypeScript', 'Tailwind', 'Framer Motion', 'Storybook', 'Zustand'],
+  },
+  {
+    id: 'data',
+    title: 'Data & Observability',
+    summary:
+      'Streaming pipelines, analytics, and telemetry that surface the right signals.',
+    focus: 'Telemetry · Analytics',
+    tokens: ['Python', 'Airflow', 'dbt', 'BigQuery', 'Grafana', 'Prometheus', 'Superset'],
+  },
+  {
+    id: 'ops',
+    title: 'Cloud & Ops',
+    summary:
+      'Infrastructure-as-code and automation to deploy confidently and iterate quickly.',
+    focus: 'DevOps · Reliability',
+    tokens: ['AWS', 'Docker', 'Kubernetes', 'Terraform', 'GitHub Actions', 'Pulumi', 'Fly.io'],
+  },
+]
+
 const experience = [
   {
     id: 'exp-1',
     company: 'Lambda Systems',
     role: 'Platform Engineer',
     period: '2024 — Now',
+    note: 'Distributed task orchestration and platform observability.',
   },
   {
     id: 'exp-2',
     company: 'Orbit Analytics',
     role: 'Full-stack Developer',
     period: '2022 — 2024',
+    note: 'Real-time analytics dashboards and growth experiments.',
   },
   {
     id: 'exp-3',
     company: 'Freelance',
     role: 'Product Engineer',
     period: '2020 — 2022',
+    note: 'End-to-end product shipping for early-stage teams.',
   },
 ]
+
+const education = [
+  {
+    id: 'edu-1',
+    company: 'Universitat de les Illes Balears',
+    role: 'B.S. Computer Engineering',
+    period: '2021 — Present',
+    note: 'Focus on distributed systems, data pipelines, and applied AI.',
+  },
+  {
+    id: 'edu-2',
+    company: 'University of Illinois Chicago',
+    role: 'Exchange · Engineering',
+    period: 'Fall 2024',
+    note: 'Advanced databases, cloud infrastructure, and product studios.',
+  },
+  {
+    id: 'edu-3',
+    company: 'Google Cloud / Coursera',
+    role: 'Professional Certificate · Data Engineering',
+    period: '2023',
+    note: 'Architecting pipelines with BigQuery, Dataflow, Terraform.',
+  },
+]
+
+const profilePanels = {
+  education: {
+    title: 'Rooted in engineering fundamentals.',
+    subtitle:
+      'Formal programs and specialized tracks that ground my work in robust systems design.',
+  },
+  experience: {
+    title: 'Shipping impact with lean teams.',
+    subtitle:
+      'From platform squads to product pods, operating end-to-end with pragmatism and speed.',
+  },
+}
 
 type ClockState = {
   label: string
@@ -99,6 +175,7 @@ export default function Home() {
   const [showTooltip, setShowTooltip] = useState(false)
   const [isLeaving, setIsLeaving] = useState(false)
   const [showCta, setShowCta] = useState(true)
+  const [activeProfile, setActiveProfile] = useState<'education' | 'experience'>('education')
   const heroRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
@@ -229,20 +306,72 @@ export default function Home() {
 
       <section className="experience" id="experience">
         <div className="experience__header">
-          <span className="experience__eyebrow">Experience</span>
-          <h2 className="experience__title">Shipping impact with lean teams.</h2>
-          <p className="experience__subtitle">
-            From platform engineering squads to autonomous product pods, I plug into teams that value rigor, speed, and thoughtful systems design.
+          <span className="experience__eyebrow">Background</span>
+          <h2 className="experience__title">{profilePanels[activeProfile].title}</h2>
+          <p className="experience__subtitle">{profilePanels[activeProfile].subtitle}</p>
+        </div>
+        <div className="experience__content">
+          <div className="experience__tabs" role="tablist" aria-label="Experience and education">
+            {(['education', 'experience'] as const).map((section) => (
+              <button
+                key={section}
+                type="button"
+                role="tab"
+                aria-selected={activeProfile === section}
+                aria-controls={`profile-${section}`}
+                id={`tab-${section}`}
+                className={`experience__tab ${
+                  activeProfile === section ? 'experience__tab--active' : ''
+                }`}
+                onClick={() => setActiveProfile(section)}
+              >
+                {section === 'education' ? 'Education' : 'Experience'}
+              </button>
+            ))}
+          </div>
+          <div
+            className="experience__list"
+            role="list"
+            id={`profile-${activeProfile}`}
+            aria-labelledby={`tab-${activeProfile}`}
+          >
+            {(activeProfile === 'education' ? education : experience).map((item) => (
+              <article key={item.id} className="experience__item" role="listitem">
+                <div className="experience__company">
+                  <span className="experience__company-name">{item.company}</span>
+                  <span className="experience__role">{item.role}</span>
+                  {item.note ? <span className="experience__note">{item.note}</span> : null}
+                </div>
+                <span className="experience__period">{item.period}</span>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="tech" id="tech">
+        <div className="tech__header">
+          <span className="tech__eyebrow">Tech Stack</span>
+          <h2 className="tech__title">Tools shaped by impact.</h2>
+          <p className="tech__subtitle">
+            A snapshot of the platforms and patterns I rely on to ship reliable products end to end.
           </p>
         </div>
-        <div className="experience__list" role="list">
-          {experience.map((item) => (
-            <article key={item.id} className="experience__item" role="listitem">
-              <div className="experience__company">
-                <span className="experience__company-name">{item.company}</span>
-                <span className="experience__role">{item.role}</span>
+        <div className="tech__grid">
+          {techStack.map((group) => (
+            <article key={group.id} className="tech-card">
+              <div className="tech-card__heading">
+                <span className="tech-card__focus">{group.focus}</span>
+                <h3 className="tech-card__title">{group.title}</h3>
+                <p className="tech-card__summary">{group.summary}</p>
               </div>
-              <span className="experience__period">{item.period}</span>
+              <div className="tech-card__tokens" aria-label={`${group.title} tools`}>
+                {group.tokens.map((token) => (
+                  <span key={token} className="tech-card__token">
+                    {token}
+                  </span>
+                ))}
+              </div>
             </article>
           ))}
         </div>
