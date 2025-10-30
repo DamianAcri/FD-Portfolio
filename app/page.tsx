@@ -60,7 +60,7 @@ const techStack = [
     title: 'Backend Systems',
     summary:
       'Concurrency, data modeling, and orchestration to keep products fast and resilient.',
-    focus: 'APIs · Distributed Systems',
+    focus: 'APIs - Distributed Systems',
     tokens: ['Go', 'Node.js', 'PostgreSQL', 'MongoDB', 'Redis', 'gRPC', 'GraphQL', 'Kafka'],
   },
   {
@@ -68,7 +68,7 @@ const techStack = [
     title: 'Product Interfaces',
     summary:
       'Design systems, animation, and accessible interfaces that translate technical rigor into clarity.',
-    focus: 'UI Engineering · Motion',
+    focus: 'UI Engineering - Motion',
     tokens: ['React', 'Next.js', 'TypeScript', 'Tailwind', 'Framer Motion', 'Storybook', 'Zustand'],
   },
   {
@@ -76,7 +76,7 @@ const techStack = [
     title: 'Data & Observability',
     summary:
       'Streaming pipelines, analytics, and telemetry that surface the right signals.',
-    focus: 'Telemetry · Analytics',
+    focus: 'Telemetry - Analytics',
     tokens: ['Python', 'Airflow', 'dbt', 'BigQuery', 'Grafana', 'Prometheus', 'Superset'],
   },
   {
@@ -84,7 +84,7 @@ const techStack = [
     title: 'Cloud & Ops',
     summary:
       'Infrastructure-as-code and automation to deploy confidently and iterate quickly.',
-    focus: 'DevOps · Reliability',
+    focus: 'DevOps - Reliability',
     tokens: ['AWS', 'Docker', 'Kubernetes', 'Terraform', 'GitHub Actions', 'Pulumi', 'Fly.io'],
   },
 ]
@@ -94,21 +94,21 @@ const experience = [
     id: 'exp-1',
     company: 'Lambda Systems',
     role: 'Platform Engineer',
-    period: '2024 — Now',
+    period: '2024 - Now',
     note: 'Distributed task orchestration and platform observability.',
   },
   {
     id: 'exp-2',
     company: 'Orbit Analytics',
     role: 'Full-stack Developer',
-    period: '2022 — 2024',
+    period: '2022 - 2024',
     note: 'Real-time analytics dashboards and growth experiments.',
   },
   {
     id: 'exp-3',
     company: 'Freelance',
     role: 'Product Engineer',
-    period: '2020 — 2022',
+    period: '2020 - 2022',
     note: 'End-to-end product shipping for early-stage teams.',
   },
 ]
@@ -118,20 +118,20 @@ const education = [
     id: 'edu-1',
     company: 'Universitat de les Illes Balears',
     role: 'B.S. Computer Engineering',
-    period: '2021 — Present',
+    period: '2021 - Present',
     note: 'Focus on distributed systems, data pipelines, and applied AI.',
   },
   {
     id: 'edu-2',
     company: 'University of Illinois Chicago',
-    role: 'Exchange · Engineering',
+    role: 'Exchange - Engineering',
     period: 'Fall 2024',
     note: 'Advanced databases, cloud infrastructure, and product studios.',
   },
   {
     id: 'edu-3',
     company: 'Google Cloud / Coursera',
-    role: 'Professional Certificate · Data Engineering',
+    role: 'Professional Certificate - Data Engineering',
     period: '2023',
     note: 'Architecting pipelines with BigQuery, Dataflow, Terraform.',
   },
@@ -213,7 +213,8 @@ export default function Home() {
   }
 
   return (
-    <main className="frame">
+    <>
+      <main className="frame">
       <header className="frame__top">
         <span className="frame__brand">DAMIAN ACRI</span>
         <nav className="frame__nav" aria-label="principal">
@@ -258,7 +259,7 @@ export default function Home() {
           href="#projects"
           className={`hero__cta ${!showCta ? 'hero__cta--hidden' : ''}`}
         >
-          SEE PROJECTS ↓
+          SEE PROJECTS &#8595;
         </a>
         {showTooltip && (
           <div
@@ -376,6 +377,69 @@ export default function Home() {
           ))}
         </div>
       </section>
+
+      <section className="contact" id="contact">
+        <div className="contact__inner">
+          <div className="contact__intro">
+            <span className="contact__eyebrow">Contact</span>
+            <h2 className="contact__title">Let&apos;s build shipping software together.</h2>
+            <p className="contact__subtitle">
+              Based in Chicago and Palma. I&apos;m available for summer 2026 internships and select collaborations that
+              require end-to-end product execution.
+            </p>
+          </div>
+          <div className="contact__panel">
+            <div className="contact__row">
+              <span className="contact__label">Email</span>
+              <a className="contact__link" href="mailto:hello@damianacri.dev">
+                hello@damianacri.dev
+              </a>
+            </div>
+            <div className="contact__row">
+              <span className="contact__label">Status</span>
+              <span className="contact__value">Open to internship opportunities &middot; Summer 2026</span>
+            </div>
+            <div className="contact__row contact__row--social">
+              <span className="contact__label">Social</span>
+              <div className="contact__socials">
+                <a className="contact__pill" href="https://www.linkedin.com/in/damianacri" target="_blank" rel="noreferrer">
+                  LinkedIn
+                </a>
+                <a className="contact__pill" href="https://github.com/damianacri" target="_blank" rel="noreferrer">
+                  GitHub
+                </a>
+                <a className="contact__pill" href="https://x.com/damianacri" target="_blank" rel="noreferrer">
+                  X / Twitter
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
-  )
+    <footer className="site-footer">
+      <div className="site-footer__top">
+        <span className="site-footer__brand">DAMIAN ACRI</span>
+        <nav className="site-footer__nav" aria-label="secondary">
+          {navLinks.map(({ label, href }) => (
+            <a key={href} className="site-footer__link" href={href}>
+              {label}
+            </a>
+          ))}
+        </nav>
+      </div>
+      <div className="site-footer__bottom">
+        <span className="site-footer__note">Engineered with intention &middot; {new Date().getFullYear()}</span>
+        <a className="site-footer__link site-footer__link--muted" href="mailto:hello@damianacri.dev">
+          hello@damianacri.dev
+        </a>
+      </div>
+    </footer>
+  </>
+)
 }
+
+
+
+
+
